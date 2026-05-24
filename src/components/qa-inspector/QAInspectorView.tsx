@@ -1,29 +1,45 @@
+// src/components/qa-inspector/QAInspectorView.tsx
+
+"use client";
+
+import { useMemo, useState } from "react";
+import type { QAInspectionResult } from "@/lib/ai/schema";
+import { inspectionTarget } from "@/lib/data/inspectionTarget";
+import { mockInspectionResult } from "@/lib/data/mockInspectionResult";
+import { InspectionInputPanel } from "./InspectionInputPanel";
+import { InspectionResultPanel } from "./InspectionResultPanel";
+
 export function QAInspectorView() {
+  const [inspectionResult, setInspectionResult] =
+    useState<QAInspectionResult | null>(null);
+  const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
+
+  const selectedIssue = useMemo(() => {
+    if (!inspectionResult) {
+      return null;
+    }
+
+    return (
+      inspectionResult.issues.find((issue) => issue.id === selectedIssueId) ??
+      inspectionResult.issues[0]
+    );
+  }, [inspectionResult, selectedIssueId]);
+
+  function handleRunInspection() {
+    setInspectionResult(mockInspectionResult);
+    setSelectedIssueId(null);
+  }
+
   return (
-    <section className="grid min-h-screen grid-cols-[280px_minmax(0,1fr)_420px]">
-      <aside className="border-r border-slate-800 p-4">
-        <h1 className="text-lg font-semibold">AI UI QA Inspector</h1>
-        <p className="mt-2 text-sm text-slate-400">
-          Inspect frontend UI states using screenshot, DOM, and accessibility
-          evidence.
-        </p>
-      </aside>
-
-      <section className="p-6">
-        <h2 className="text-sm font-medium text-slate-400">
-          Evidence workspace
-        </h2>
-        <div className="mt-4 rounded-lg border border-slate-800 bg-slate-900 p-6">
-          Screenshot preview and DOM evidence will go here.
-        </div>
-      </section>
-
-      <aside className="border-l border-slate-800 p-4">
-        <h2 className="text-sm font-medium text-slate-400">QA Inspector</h2>
-        <div className="mt-4 rounded-lg border border-slate-800 bg-slate-900 p-4">
-          Structured QA issues will go here.
-        </div>
-      </aside>
+    <section className="grid min-h-screen grid-cols-[minmax(0,1.15fr)_minmax(420px,0.85fr)] bg-slate-950 text-slate-100">
+      <InspectionInputPanel target={inspectionTarget} />
+      <InspectionResultPanel
+        result={inspectionResult}
+        selectedIssue={selectedIssue}
+        selectedIssueId={selectedIssue?.id ?? null}
+        onSelectIssue={setSelectedIssueId}
+        onRunInspection={handleRunInspection}
+      />
     </section>
   );
 }
