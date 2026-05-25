@@ -38,6 +38,7 @@ export function QAInspectorView() {
           screenName: inspectionTarget.screenName,
           stateName: inspectionTarget.stateName,
           description: inspectionTarget.description,
+          screenshotDescription: inspectionTarget.screenshotDescription,
           domSnippet: inspectionTarget.domSnippet,
           accessibilityCheck: inspectionTarget.accessibilityCheck,
         }),

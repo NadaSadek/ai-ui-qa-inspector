@@ -1,50 +1,48 @@
 import { NextResponse } from "next/server";
 import { inspectUiState } from "@/lib/ai/inspectUiState";
-import {
-  inspectionRequestSchema,
-  qaInspectionResultSchema,
-} from "@/lib/ai/schema";
+import { inspectionRequestSchema, qaInspectionResultSchema } from "@/lib/ai/schema";
 import { mockInspectionResult } from "@/lib/data/mockInspectionResult";
-import { inspectionTarget } from "@/lib/data/inspectionTarget";
 
-export async function POST() {
+export async function POST(request: Request) {
+  const body = await request.json();
+  const parsedRequest = inspectionRequestSchema.safeParse(body);
+
+  if (!parsedRequest.success) {
+    return NextResponse.json({ error: "Invalid inspection request." }, { status: 400 });
+  }
+
+  const inspectionInput = parsedRequest.data;
+
   if (process.env.ENABLE_LIVE_AI !== "true") {
-    const parsedResult =
-      qaInspectionResultSchema.safeParse(mockInspectionResult);
+    const parsedResult = qaInspectionResultSchema.safeParse(mockInspectionResult);
 
     if (!parsedResult.success) {
       return NextResponse.json(
         { error: "Mock inspection result does not match schema." },
-        { status: 500 },
+        { status: 500 }
       );
     }
 
-    return NextResponse.json(parsedResult.data);
+    return NextResponse.json({
+      ...parsedResult.data,
+      targetId: inspectionInput.id,
+    });
   }
 
   if (!process.env.AI_GATEWAY_API_KEY) {
-    return NextResponse.json(
-      { error: "Missing AI Gateway API key." },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Missing AI Gateway API key." }, { status: 500 });
   }
 
   try {
-    const parsed = inspectionRequestSchema.parse(inspectionTarget);
-    const result = await inspectUiState(parsed);
-    return NextResponse.json({ ...result, targetId: inspectionTarget.id });
+    const result = await inspectUiState(inspectionInput);
+
+    return NextResponse.json({
+      ...result,
+      targetId: inspectionInput.id,
+    });
   } catch (error) {
     console.error("Live inspection failed", error);
 
-    const message =
-      error instanceof Error ? error.message : "Unknown live inspection error.";
-
-    return NextResponse.json(
-      {
-        error: "Live inspection failed.",
-        details: process.env.NODE_ENV === "development" ? message : undefined,
-      },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Live inspection failed." }, { status: 500 });
   }
 }
