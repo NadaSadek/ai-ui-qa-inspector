@@ -52,12 +52,18 @@ HTML: ${target.accessibilityCheck.html ?? "Not provided"}
 
 Rules:
 - targetId must exactly equal "${target.id}".
+- affectedElement must be a human-readable UI element name, not only a CSS selector.
 - Use screenshotObservation only from the screenshot description.
-- Use accessibilityCheckReference only when directly citing the provided accessibility check rule/message.
+- Use domEvidence only from the DOM snippet.
+- domEvidence should quote the smallest relevant DOM fragment, not the full DOM snippet.
+- Use accessibilityCheckReference only when directly citing the provided accessibility check rule or message.
 - If the accessibility check does not directly support an issue, set accessibilityCheckReference to null.
-- Do not create two findings for the same root cause. Merge overlapping accessibility and UX-labeling findings.
+- Do not create two findings for the same root cause.
+- Merge overlapping accessibility and UX-labeling findings.
 - Return 2 to 4 distinct findings.
-- Suggested fixes must be concrete frontend remediation steps.`,
+- Suggested fixes must be concrete frontend remediation steps.
+- For dynamic error messages, mention aria-live or role="alert" only when the input indicates the message appears after user action or form submission.
+- Do not mention color contrast unless the screenshot description or accessibility check input explicitly provides contrast evidence.`,
   });
 
   return output;
