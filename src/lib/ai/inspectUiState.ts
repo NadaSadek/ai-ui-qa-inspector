@@ -50,18 +50,28 @@ HTML: ${target.accessibilityCheck.html ?? "Not provided"}
 
 Rules:
 - targetId must exactly equal "${target.id}".
-- affectedElement must be a human-readable UI element name, not only a CSS selector.
-- Use screenshotObservation only from the screenshot description.
-- Use domEvidence only from the DOM snippet.
-- domEvidence should quote the smallest relevant DOM fragment, not the full DOM snippet.
-- Use accessibilityCheckReference only when directly citing the provided accessibility check rule or message.
-- If the accessibility check does not directly support an issue, set accessibilityCheckReference to null.
-- Do not create two findings for the same root cause.
-- Merge overlapping accessibility and UX-labeling findings.
 - Return 2 to 4 distinct findings.
+- Do not create two findings for the same root cause; merge overlapping accessibility and UX-labeling findings.
+- Use stable, descriptive kebab-case issue ids, e.g. "missing-card-number-label", not generic ids like "ISS-1".
+
+Evidence rules:
+- affectedElement must be a human-readable UI element name, not only a CSS selector.
+- screenshotObservation must describe only visible UI details from the screenshot description.
+- Do not include screen reader behavior, DOM behavior, or implementation assumptions in screenshotObservation.
+- domEvidence must come only from the DOM snippet.
+- domEvidence should quote the smallest relevant DOM fragment, not the full DOM snippet.
+- accessibilityCheckReference must directly cite the provided accessibility check rule or message.
+- If the accessibility check does not directly support an issue, set accessibilityCheckReference to null.
+- Do not mention color contrast unless the screenshot description or accessibility check input explicitly provides contrast evidence.
+
+Severity rules:
+- Use high severity only for blocking issues or serious accessibility failures.
+- Use medium severity for incomplete feedback that is still visually available or recoverable.
+
+Fix rules:
 - Suggested fixes must be concrete frontend remediation steps.
 - For dynamic error messages, mention aria-live or role="alert" only when the input indicates the message appears after user action or form submission.
-- Do not mention color contrast unless the screenshot description or accessibility check input explicitly provides contrast evidence.`,
+- When suggesting aria-describedby, reference the id of the descriptive or error message element, not the input element's own id.`,
   });
 
   return output;
