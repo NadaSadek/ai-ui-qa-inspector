@@ -32,5 +32,22 @@ export const qaInspectionResultSchema = z.object({
   issues: z.array(qaIssueSchema).min(1).max(5),
 });
 
+export const inspectionRequestSchema = z.object({
+  id: z.string().min(1),
+  screenName: z.string().min(1),
+  stateName: z.string().min(1),
+  description: z.string().min(1),
+  screenshotDescription: z.string().min(1),
+  domSnippet: z.string().min(1),
+  accessibilityCheck: z.object({
+    ruleId: z.string().min(1),
+    impact: z.enum(["minor", "moderate", "serious", "critical"]),
+    target: z.string().min(1),
+    message: z.string().min(1),
+    html: z.string().optional(),
+  }),
+});
+
 export type QAIssue = z.infer<typeof qaIssueSchema>;
 export type QAInspectionResult = z.infer<typeof qaInspectionResultSchema>;
+export type InspectionRequest = z.infer<typeof inspectionRequestSchema>;

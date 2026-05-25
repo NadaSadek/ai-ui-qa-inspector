@@ -1,11 +1,9 @@
 import "server-only";
 
-import { openai } from "@ai-sdk/openai";
 import { generateText, Output } from "ai";
-import { qaInspectionResultSchema } from "@/lib/ai/schema";
-import type { InspectionTarget } from "@/types/qa";
+import { InspectionRequest, qaInspectionResultSchema } from "@/lib/ai/schema";
 
-export async function inspectUiState(target: InspectionTarget) {
+export async function inspectUiState(target: InspectionRequest) {
   const { output } = await generateText({
     temperature: 0,
     model: "openai/gpt-5-nano",

@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { inspectUiState } from "@/lib/ai/inspectUiState";
-import { qaInspectionResultSchema } from "@/lib/ai/schema";
+import {
+  inspectionRequestSchema,
+  qaInspectionResultSchema,
+} from "@/lib/ai/schema";
 import { mockInspectionResult } from "@/lib/data/mockInspectionResult";
 import { inspectionTarget } from "@/lib/data/inspectionTarget";
 
@@ -27,7 +30,8 @@ export async function POST() {
   }
 
   try {
-    const result = await inspectUiState(inspectionTarget);
+    const parsed = inspectionRequestSchema.parse(inspectionTarget);
+    const result = await inspectUiState(parsed);
     return NextResponse.json({ ...result, targetId: inspectionTarget.id });
   } catch (error) {
     console.error("Live inspection failed", error);

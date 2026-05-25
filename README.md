@@ -2,13 +2,13 @@
 
 An AI-assisted frontend QA workbench that inspects UI screenshots, DOM snippets and synthetic accessibility findings to produce structured developer-facing QA issues.
 
-## Core workflow
-1. Select a UI state
-2. Review screenshot + DOM + automated finding
-3. Run inspection
-4. Review prioritized QA issues
-5. Mark status / remediation state
+## Current v0 workflow
 
+1. Review one inspection input package
+2. Run mock or live inspection
+3. Review structured QA findings
+4. Inspect cited screenshot, DOM, and accessibility-check evidence
 
 ## Tech stack
+
 Next.js, TypeScript, Vercel AI SDK, Zod, Tailwind.

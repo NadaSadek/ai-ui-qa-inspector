@@ -20,7 +20,10 @@ export const InspectionResultPanel = ({
   inspectionError: string | null;
 }) => {
   return (
-    <aside className="overflow-y-auto border-l border-slate-800 p-6">
+    <section
+      className="overflow-y-auto border-l border-slate-800 p-6"
+      aria-label="Inspection result"
+    >
       <header>
         <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
           Inspection result
@@ -98,6 +101,6 @@ export const InspectionResultPanel = ({
           {selectedIssue ? <IssueDetail issue={selectedIssue} /> : null}
         </div>
       )}
-    </aside>
+    </section>
   );
 };

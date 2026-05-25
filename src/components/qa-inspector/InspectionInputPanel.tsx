@@ -7,7 +7,7 @@ export const InspectionInputPanel = ({
 }: {
   target: InspectionTarget;
 }) => (
-  <main className="overflow-y-auto p-6">
+  <section className="overflow-y-auto p-6" aria-label="Inspection input">
     <header>
       <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
         Inspection input
@@ -66,5 +66,5 @@ export const InspectionInputPanel = ({
         <InputRow label="Message">{target.accessibilityCheck.message}</InputRow>
       </div>
     </section>
-  </main>
+  </section>
 );
