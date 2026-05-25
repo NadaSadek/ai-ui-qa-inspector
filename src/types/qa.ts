@@ -13,4 +13,5 @@ export type InspectionTarget = {
   description: string;
   domSnippet: string;
   accessibilityCheck: AccessibilityCheck;
+  screenshotDescription: string;
 };
