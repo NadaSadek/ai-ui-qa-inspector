@@ -20,13 +20,6 @@ export const inspectionTarget: InspectionTarget = {
 
   <button type="submit">Pay now</button>
 </form>`,
-  accessibilityCheck: {
-    ruleId: "label",
-    impact: "serious",
-    target: "#card-number",
-    message: "Form element does not have an accessible name.",
-    html: `<input id="card-number" name="cardNumber" placeholder="Card number" autocomplete="cc-number" />`,
-  },
   screenshotDescription:
     "A checkout payment form is shown with a card number input that uses placeholder text only. Below the input, a red error message says 'Payment failed. Try again.' A primary 'Pay now' button appears below the error.",
 };

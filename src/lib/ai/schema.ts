@@ -18,7 +18,6 @@ export const qaIssueSchema = z.object({
   evidence: z.object({
     screenshotObservation: z.string().min(1),
     domEvidence: z.string().min(1),
-    accessibilityCheckReference: z.string().nullable(),
   }),
 
   userImpact: z.string().min(1),
@@ -39,13 +38,6 @@ export const inspectionRequestSchema = z.object({
   description: z.string().min(1),
   screenshotDescription: z.string().min(1),
   domSnippet: z.string().min(1),
-  accessibilityCheck: z.object({
-    ruleId: z.string().min(1),
-    impact: z.enum(["minor", "moderate", "serious", "critical"]),
-    target: z.string().min(1),
-    message: z.string().min(1),
-    html: z.string().optional(),
-  }),
 });
 
 export type QAIssue = z.infer<typeof qaIssueSchema>;

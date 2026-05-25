@@ -7,7 +7,7 @@ export const mockInspectionResult: QAInspectionResult = {
 
   issues: [
     {
-      id: "missing-card-input-label",
+      id: "missing-card-number-label",
       issueType: "accessibility",
       severity: "high",
       affectedElement: "Card number input",
@@ -16,7 +16,6 @@ export const mockInspectionResult: QAInspectionResult = {
           "The card field appears without a persistent visible label. The field identity depends on placeholder text.",
         domEvidence:
           "The input has placeholder='Card number' but no associated label, aria-label, or aria-labelledby.",
-        accessibilityCheckReference: "label: Form element does not have an accessible name.",
       },
       userImpact:
         "Screen reader users may not understand what information the field requires, and sighted users lose the field hint after typing.",
@@ -33,7 +32,6 @@ export const mockInspectionResult: QAInspectionResult = {
           "The error message appears as a general form message and does not visually point to a specific field or recovery step.",
         domEvidence:
           "The error is rendered as a paragraph after the input, but the card input does not reference it with aria-describedby.",
-        accessibilityCheckReference: null,
       },
       userImpact:
         "Users may not know whether the card number, card status, payment processor, or another field caused the failure.",
@@ -49,7 +47,6 @@ export const mockInspectionResult: QAInspectionResult = {
         screenshotObservation:
           "The message says 'Payment failed. Try again.' but does not explain what the user should check or change.",
         domEvidence: "The error text is generic and does not include recovery guidance.",
-        accessibilityCheckReference: null,
       },
       userImpact:
         "Users may repeatedly retry without understanding whether they need to check card details, use another card, or contact their bank.",

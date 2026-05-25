@@ -14,8 +14,7 @@ export async function inspectUiState(target: InspectionRequest) {
 
 You inspect frontend UI states using:
 - rendered UI screenshot description
-- DOM snippets
-- accessibility check input
+- DOM snippets 
 
 Return developer-facing QA findings.
 Do not invent inaccessible behavior that is not supported by the input.
@@ -41,13 +40,6 @@ ${target.description}
 DOM snippet:
 ${target.domSnippet}
 
-Accessibility check input:
-Rule: ${target.accessibilityCheck.ruleId}
-Impact: ${target.accessibilityCheck.impact}
-Target: ${target.accessibilityCheck.target}
-Message: ${target.accessibilityCheck.message}
-HTML: ${target.accessibilityCheck.html ?? "Not provided"}
-
 Rules:
 - targetId must exactly equal "${target.id}".
 - Return 2 to 4 distinct findings.
@@ -60,9 +52,8 @@ Evidence rules:
 - Do not include screen reader behavior, DOM behavior, or implementation assumptions in screenshotObservation.
 - domEvidence must come only from the DOM snippet.
 - domEvidence should quote the smallest relevant DOM fragment, not the full DOM snippet.
-- accessibilityCheckReference must directly cite the provided accessibility check rule or message.
-- If the accessibility check does not directly support an issue, set accessibilityCheckReference to null.
-- Do not mention color contrast unless the screenshot description or accessibility check input explicitly provides contrast evidence.
+- Do not mention color contrast unless the screenshot description explicitly provides contrast evidence.
+- Accessibility issues should be inferred from visible UI and DOM evidence.
 
 Severity rules:
 - Use high severity only for blocking issues or serious accessibility failures.

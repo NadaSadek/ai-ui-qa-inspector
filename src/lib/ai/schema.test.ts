@@ -22,7 +22,6 @@ describe("qaInspectionResultSchema", () => {
           evidence: {
             screenshotObservation: "The input appears without a visible label.",
             domEvidence: "The input has no associated label.",
-            accessibilityCheckReference: "label: Form element does not have an accessible name.",
           },
           userImpact: "Users may not understand the field.",
           suggestedFix: "Add a label.",
@@ -46,7 +45,6 @@ describe("qaInspectionResultSchema", () => {
           evidence: {
             screenshotObservation: "The input appears without a visible label.",
             domEvidence: "The input has no associated label.",
-            accessibilityCheckReference: "label: Form element does not have an accessible name.",
           },
           userImpact: "Users may not understand the field.",
           suggestedFix: "Add a label.",

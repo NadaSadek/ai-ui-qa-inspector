@@ -40,7 +40,6 @@ export function QAInspectorView() {
           description: inspectionTarget.description,
           screenshotDescription: inspectionTarget.screenshotDescription,
           domSnippet: inspectionTarget.domSnippet,
-          accessibilityCheck: inspectionTarget.accessibilityCheck,
         }),
       });
 

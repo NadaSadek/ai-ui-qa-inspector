@@ -37,18 +37,5 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
         </pre>
       </div>
     </section>
-
-    <section className="mt-6 rounded-xl border border-slate-800 bg-slate-900">
-      <div className="border-b border-slate-800 px-4 py-3">
-        <h3 className="text-sm font-medium text-slate-100">Accessibility Check</h3>
-      </div>
-
-      <div className="space-y-3 p-4 text-sm text-slate-300">
-        <InputRow label="Rule">{target.accessibilityCheck.ruleId}</InputRow>
-        <InputRow label="Impact">{target.accessibilityCheck.impact}</InputRow>
-        <InputRow label="Target">{target.accessibilityCheck.target}</InputRow>
-        <InputRow label="Message">{target.accessibilityCheck.message}</InputRow>
-      </div>
-    </section>
   </section>
 );
