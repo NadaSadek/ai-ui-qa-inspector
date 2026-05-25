@@ -34,7 +34,7 @@ export function QAInspectorView() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          targetId: inspectionTarget.id,
+          id: inspectionTarget.id,
           screenName: inspectionTarget.screenName,
           stateName: inspectionTarget.stateName,
           description: inspectionTarget.description,
