@@ -1,5 +1,3 @@
-// src/lib/data/mock-inspection-result.ts
-
 import type { QAInspectionResult } from "@/lib/ai/schema";
 
 export const mockInspectionResult: QAInspectionResult = {

@@ -1,11 +1,8 @@
-// src/components/qa-inspector/QAInspectorView.tsx
-
 "use client";
 
 import { useMemo, useState } from "react";
 import type { QAInspectionResult } from "@/lib/ai/schema";
 import { inspectionTarget } from "@/lib/data/inspectionTarget";
-import { mockInspectionResult } from "@/lib/data/mockInspectionResult";
 import { InspectionInputPanel } from "./InspectionInputPanel";
 import { InspectionResultPanel } from "./InspectionResultPanel";
 
@@ -13,6 +10,8 @@ export function QAInspectorView() {
   const [inspectionResult, setInspectionResult] =
     useState<QAInspectionResult | null>(null);
   const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
+  const [isInspecting, setIsInspecting] = useState(false);
+  const [inspectionError, setInspectionError] = useState<string | null>(null);
 
   const selectedIssue = useMemo(() => {
     if (!inspectionResult) {
@@ -25,9 +24,39 @@ export function QAInspectorView() {
     );
   }, [inspectionResult, selectedIssueId]);
 
-  function handleRunInspection() {
-    setInspectionResult(mockInspectionResult);
-    setSelectedIssueId(null);
+  async function handleRunInspection() {
+    setIsInspecting(true);
+    setInspectionError(null);
+
+    try {
+      const response = await fetch("/api/inspect-ui", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          targetId: inspectionTarget.id,
+          screenName: inspectionTarget.screenName,
+          stateName: inspectionTarget.stateName,
+          description: inspectionTarget.description,
+          domSnippet: inspectionTarget.domSnippet,
+          accessibilityCheck: inspectionTarget.accessibilityCheck,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Inspection request failed.");
+      }
+
+      const result = await response.json();
+
+      setInspectionResult(result);
+      setSelectedIssueId(null);
+    } catch {
+      setInspectionError("Could not run inspection. Try again.");
+    } finally {
+      setIsInspecting(false);
+    }
   }
 
   return (
@@ -39,6 +68,8 @@ export function QAInspectorView() {
         selectedIssueId={selectedIssue?.id ?? null}
         onSelectIssue={setSelectedIssueId}
         onRunInspection={handleRunInspection}
+        isInspecting={isInspecting}
+        inspectionError={inspectionError}
       />
     </section>
   );

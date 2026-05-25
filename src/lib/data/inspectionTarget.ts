@@ -1,5 +1,3 @@
-// src/lib/data/inspection-target.ts
-
 import type { InspectionTarget } from "@/types/qa";
 
 export const inspectionTarget: InspectionTarget = {

@@ -8,12 +8,16 @@ export const InspectionResultPanel = ({
   selectedIssueId,
   onSelectIssue,
   onRunInspection,
+  isInspecting,
+  inspectionError,
 }: {
   result: QAInspectionResult | null;
   selectedIssue: QAIssue | null;
   selectedIssueId: string | null;
   onSelectIssue: (issueId: string) => void;
   onRunInspection: () => void;
+  isInspecting: boolean;
+  inspectionError: string | null;
 }) => {
   return (
     <aside className="overflow-y-auto border-l border-slate-800 p-6">
@@ -29,15 +33,17 @@ export const InspectionResultPanel = ({
           cited output, not as raw input.
         </p>
       </header>
-
       <button
         type="button"
         onClick={onRunInspection}
-        className="mt-6 w-full rounded-lg bg-sky-500 px-4 py-2.5 text-sm font-medium text-slate-950 transition hover:bg-sky-400"
+        disabled={isInspecting}
+        className="mt-6 w-full rounded-lg bg-sky-500 px-4 py-2.5 text-sm font-medium text-slate-950 transition hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Run inspection
+        {isInspecting ? "Inspecting…" : "Run inspection"}
       </button>
-
+      {inspectionError ? (
+        <p className="mt-3 text-sm text-red-400">{inspectionError}</p>
+      ) : null}
       {!result ? (
         <section className="mt-6 rounded-xl border border-slate-800 bg-slate-900 p-4">
           <p className="text-sm font-medium text-slate-100">
@@ -56,12 +62,10 @@ export const InspectionResultPanel = ({
               {result.summary}
             </p>
           </section>
-
           <section className="rounded-xl border border-slate-800 bg-slate-900">
             <div className="border-b border-slate-800 px-4 py-3">
               <h3 className="text-sm font-medium text-slate-100">Findings</h3>
             </div>
-
             <div className="divide-y divide-slate-800">
               {result.issues.map((issue) => (
                 <button

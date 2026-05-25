@@ -1,5 +1,3 @@
-// src/lib/ai/schema.ts
-
 import { z } from "zod";
 
 export const qaIssueSchema = z.object({
