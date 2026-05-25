@@ -16,9 +16,7 @@ export const IssueDetail = ({ issue }: { issue: QAIssue }) => (
           <EvidenceItem title="Screenshot observation">
             {issue.evidence.screenshotObservation}
           </EvidenceItem>
-          <EvidenceItem title="DOM evidence">
-            {issue.evidence.domEvidence}
-          </EvidenceItem>
+          <EvidenceItem title="DOM evidence">{issue.evidence.domEvidence}</EvidenceItem>
           {issue.evidence.accessibilityCheckReference ? (
             <EvidenceItem title="Accessibility check reference">
               {issue.evidence.accessibilityCheckReference}

@@ -7,8 +7,7 @@ import { InspectionInputPanel } from "./InspectionInputPanel";
 import { InspectionResultPanel } from "./InspectionResultPanel";
 
 export function QAInspectorView() {
-  const [inspectionResult, setInspectionResult] =
-    useState<QAInspectionResult | null>(null);
+  const [inspectionResult, setInspectionResult] = useState<QAInspectionResult | null>(null);
   const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
   const [isInspecting, setIsInspecting] = useState(false);
   const [inspectionError, setInspectionError] = useState<string | null>(null);

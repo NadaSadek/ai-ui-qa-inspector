@@ -16,8 +16,7 @@ export const mockInspectionResult: QAInspectionResult = {
           "The card field appears without a persistent visible label. The field identity depends on placeholder text.",
         domEvidence:
           "The input has placeholder='Card number' but no associated label, aria-label, or aria-labelledby.",
-        accessibilityCheckReference:
-          "label: Form element does not have an accessible name.",
+        accessibilityCheckReference: "label: Form element does not have an accessible name.",
       },
       userImpact:
         "Screen reader users may not understand what information the field requires, and sighted users lose the field hint after typing.",
@@ -49,8 +48,7 @@ export const mockInspectionResult: QAInspectionResult = {
       evidence: {
         screenshotObservation:
           "The message says 'Payment failed. Try again.' but does not explain what the user should check or change.",
-        domEvidence:
-          "The error text is generic and does not include recovery guidance.",
+        domEvidence: "The error text is generic and does not include recovery guidance.",
         accessibilityCheckReference: null,
       },
       userImpact:
