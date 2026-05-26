@@ -15,7 +15,7 @@ export const FindingListItem = ({
   <button
     type="button"
     onClick={onSelect}
-    className={`w-full rounded-xl border p-4 text-left transition ${
+    className={`w-full rounded-xl border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 ${
       isSelected
         ? "border-slate-400 bg-slate-50 ring-1 ring-slate-300"
         : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
