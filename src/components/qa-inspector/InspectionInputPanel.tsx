@@ -1,6 +1,6 @@
 import type { InspectionTarget } from "@/types/qa";
-import { InputRow } from "./InputRow";
-import { CheckoutScreenshotMock } from "./CheckoutScreenshotMock";
+import Image from "next/image";
+import checkoutPaymentError from "@/../public/screenshots/checkout-payment-error.png";
 
 export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) => (
   <section className="overflow-y-auto p-6" aria-label="Inspection input">
@@ -20,9 +20,14 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
         <p className="mt-1 text-sm text-slate-400">{target.stateName}</p>
         <p className="mt-3 text-sm leading-6 text-slate-400">{target.description}</p>
       </div>
-
       <div className="p-4">
-        <CheckoutScreenshotMock />
+        <Image
+          src={checkoutPaymentError}
+          alt="Checkout form payment error state"
+          loading="eager"
+          sizes="(min-width: 1024px) 55vw, 100vw"
+          className="h-auto w-full object-contain"
+        />
       </div>
     </section>
 
