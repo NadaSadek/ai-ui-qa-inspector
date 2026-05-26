@@ -26,15 +26,12 @@ export const FindingListItem = ({
         <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
           Finding {index + 1}
         </p>
-
-        <p className="mt-1 text-sm font-semibold text-slate-950">{issue.affectedElement}</p>
-
+        <p className="mt-1 text-sm font-semibold text-slate-950">{issue.title}</p>
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <IssueTypeBadge issueType={issue.issueType} />
           <SeverityBadge severity={issue.severity} />
         </div>
       </div>
-
       <span
         className={`mt-1 h-2 w-2 rounded-full ${isSelected ? "bg-slate-950" : "bg-slate-300"}`}
         aria-hidden="true"

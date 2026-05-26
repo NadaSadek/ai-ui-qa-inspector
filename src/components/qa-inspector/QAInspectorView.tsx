@@ -54,11 +54,10 @@ export function QAInspectorView() {
   return (
     <section className="min-h-screen bg-slate-50 text-slate-950">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-6">
-        <header className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <header className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
             AI UI QA Inspector
           </p>
-
           <div className="mt-2 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <h1 className="text-2xl font-semibold text-slate-950">
@@ -82,7 +81,6 @@ export function QAInspectorView() {
                   : "Run inspection"}
             </button>
           </div>
-
           {inspectionError ? (
             <p className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
               {inspectionError}

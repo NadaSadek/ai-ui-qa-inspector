@@ -28,8 +28,8 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
             src={checkoutPaymentError}
             alt="Checkout form payment error state"
             loading="eager"
-            sizes="(min-width: 1024px) 55vw, 100vw"
-            className="mx-auto h-auto w-full object-contain"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="mx-auto h-auto w-full max-w-2xl object-contain"
           />
         </div>
       </section>
@@ -37,7 +37,7 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
         <div className="mb-3">
           <h3 className="text-sm font-medium text-slate-950">DOM Snippet</h3>
         </div>
-        <pre className="max-h-[340px] overflow-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs leading-6 text-slate-200">
+        <pre className="max-h-[300px] overflow-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs leading-6 text-slate-200">
           <code>{target.domSnippet}</code>
         </pre>
       </section>
