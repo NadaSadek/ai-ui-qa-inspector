@@ -4,5 +4,5 @@ export type InspectionTarget = {
   stateName: string;
   description: string;
   domSnippet: string;
-  screenshotDescription: string;
+  screenshotSrc: string;
 };

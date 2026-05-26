@@ -36,8 +36,14 @@ export const inspectionRequestSchema = z.object({
   screenName: z.string().min(1),
   stateName: z.string().min(1),
   description: z.string().min(1),
-  screenshotDescription: z.string().min(1),
   domSnippet: z.string().min(1),
+  screenshotSrc: z
+    .string()
+    .min(1)
+    .regex(
+      /^\/screenshots\/.+\.(png|jpg|jpeg|webp)$/i,
+      "screenshotSrc must point to an image in /screenshots"
+    ),
 });
 
 export type QAIssue = z.infer<typeof qaIssueSchema>;

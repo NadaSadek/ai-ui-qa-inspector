@@ -20,6 +20,5 @@ export const inspectionTarget: InspectionTarget = {
 
   <button type="submit">Pay now</button>
 </form>`,
-  screenshotDescription:
-    "A checkout payment form is shown with a card number input that uses placeholder text only. Below the input, a red error message says 'Payment failed. Try again.' A primary 'Pay now' button appears below the error.",
+  screenshotSrc: "/screenshots/checkout-payment-error.png",
 };
