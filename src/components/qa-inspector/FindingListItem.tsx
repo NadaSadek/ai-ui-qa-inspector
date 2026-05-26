@@ -23,7 +23,7 @@ export const FindingListItem = ({
   >
     <div className="flex items-start justify-between gap-4">
       <div className="min-w-0">
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+        <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
           Finding {index + 1}
         </p>
 

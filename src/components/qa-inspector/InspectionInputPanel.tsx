@@ -8,7 +8,7 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
     aria-label="UI under inspection"
   >
     <div className="border-b border-slate-200 px-5 py-4">
-      <h2 className="text-xs font-medium uppercase tracking-wide text-slate-500">
+      <h2 className="text-xs font-medium uppercase tracking-wide text-slate-600">
         UI under inspection
       </h2>
       <div className="mt-1 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">

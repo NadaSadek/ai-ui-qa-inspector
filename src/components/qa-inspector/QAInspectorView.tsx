@@ -55,7 +55,7 @@ export function QAInspectorView() {
     <section className="min-h-screen bg-slate-50 text-slate-950">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-6">
         <header className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
             AI UI QA Inspector
           </p>
 
@@ -65,7 +65,7 @@ export function QAInspectorView() {
                 Inspect rendered UI states for frontend QA issues
               </h1>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                Find accessibility, UX and implementation issues from a screenshot and DOM snippet
+                Find frontend QA issues from a screenshot and DOM snippet
               </p>
             </div>
 
@@ -73,7 +73,7 @@ export function QAInspectorView() {
               type="button"
               onClick={handleRunInspection}
               disabled={isInspecting}
-              className="w-fit rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-fit rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
             >
               {isInspecting
                 ? "Inspecting…"
