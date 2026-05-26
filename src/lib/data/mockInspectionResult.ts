@@ -3,55 +3,41 @@ import type { QAInspectionResult } from "@/lib/ai/schema";
 export const mockInspectionResult: QAInspectionResult = {
   targetId: "checkout-payment-error",
   summary:
-    "The checkout form has accessibility and recovery-feedback issues that may make payment completion harder, especially for assistive technology users.",
+    "Card number input lacks an accessible label, and the inline payment error is not semantically connected to the field for assistive technologies.",
 
   issues: [
     {
       id: "missing-card-number-label",
+      title: "Missing Card Number Label",
       issueType: "accessibility",
       severity: "high",
-      affectedElement: "Card number input",
+      affectedElement: "Card number input field",
       evidence: {
         screenshotObservation:
-          "The card field appears without a persistent visible label. The field identity depends on placeholder text.",
+          "Card number input is visible with placeholder text 'Card number' and no visible label.",
         domEvidence:
-          "The input has placeholder='Card number' but no associated label, aria-label, or aria-labelledby.",
+          '<input id="card-number" name="cardNumber" placeholder="Card number" autocomplete="cc-number" />',
       },
       userImpact:
-        "Screen reader users may not understand what information the field requires, and sighted users lose the field hint after typing.",
+        "Users relying on assistive technologies may not know the purpose of the field, making the payment form harder to complete.",
       suggestedFix:
-        "Add a visible label associated with the input using htmlFor='card-number'. Do not rely on placeholder text as the only label.",
+        'Add a visible label for the card number field and associate it with the input, for example <label for="card-number">Card number</label>. Use aria-label or aria-labelledby only if a visible label is not feasible.',
     },
     {
-      id: "error-not-associated-with-field",
-      issueType: "state_feedback",
+      id: "payment-error-semantics",
+      title: "Payment Error Semantics",
+      issueType: "accessibility",
       severity: "medium",
       affectedElement: "Payment error message",
       evidence: {
         screenshotObservation:
-          "The error message appears as a general form message and does not visually point to a specific field or recovery step.",
-        domEvidence:
-          "The error is rendered as a paragraph after the input, but the card input does not reference it with aria-describedby.",
+          "Error message 'Payment failed. Try again.' is displayed in a pale red message area beneath the input.",
+        domEvidence: '<p class="error">Payment failed. Try again.</p>',
       },
       userImpact:
-        "Users may not know whether the card number, card status, payment processor, or another field caused the failure.",
+        "The error message may not be announced reliably by assistive technologies and may not be clearly linked to the card number input.",
       suggestedFix:
-        "Use a more specific recovery message and associate the error with the relevant field using aria-describedby.",
-    },
-    {
-      id: "payment-recovery-copy-too-vague",
-      issueType: "ux_clarity",
-      severity: "medium",
-      affectedElement: "Payment failure recovery copy",
-      evidence: {
-        screenshotObservation:
-          "The message says 'Payment failed. Try again.' but does not explain what the user should check or change.",
-        domEvidence: "The error text is generic and does not include recovery guidance.",
-      },
-      userImpact:
-        "Users may repeatedly retry without understanding whether they need to check card details, use another card, or contact their bank.",
-      suggestedFix:
-        "Replace the generic message with actionable copy, such as 'We could not process this card. Check the card details or try another payment method.'",
+        'Give the error message a stable id and reference it from the input with aria-describedby. Set aria-invalid="true" on the input while the error is present. If the message appears dynamically after submission, expose it with role="alert" or an appropriate aria-live region.',
     },
   ],
 };
