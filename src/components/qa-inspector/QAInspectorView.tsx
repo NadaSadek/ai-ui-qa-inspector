@@ -65,8 +65,7 @@ export function QAInspectorView() {
                 Inspect rendered UI states for frontend QA issues
               </h1>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                Analyze a UI screenshot and DOM context to generate structured accessibility, UX,
-                state feedback, and implementation findings.
+                Find accessibility, UX and implementation issues from a screenshot and DOM snippet
               </p>
             </div>
 

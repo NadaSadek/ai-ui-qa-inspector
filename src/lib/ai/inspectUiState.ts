@@ -70,14 +70,8 @@ Fix rules:
 Target ID:
 ${target.id}
 
-Screen name:
-${target.screenName}
-
-State name:
-${target.stateName}
-
-Description:
-${target.description}
+Screen label:
+${target.screenName} — ${target.stateName}
 
 DOM snippet:
 ${target.domSnippet}

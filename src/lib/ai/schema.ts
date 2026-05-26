@@ -35,7 +35,6 @@ export const inspectionRequestSchema = z.object({
   id: z.string().min(1),
   screenName: z.string().min(1),
   stateName: z.string().min(1),
-  description: z.string().min(1),
   domSnippet: z.string().min(1),
   screenshotSrc: z
     .string()

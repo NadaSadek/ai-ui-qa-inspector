@@ -16,14 +16,12 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
           <p className="text-lg font-semibold text-slate-950">{target.screenName}</p>
           <p className="mt-1 text-sm text-slate-600">{target.stateName}</p>
         </div>
-        <p className="max-w-2xl text-sm leading-6 text-slate-600">{target.description}</p>
       </div>
     </div>
     <div className="grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_420px]">
       <section>
         <div className="mb-3">
           <h3 className="text-sm font-medium text-slate-950">Screenshot</h3>
-          <p className="mt-1 text-xs text-slate-500">Rendered UI state sent to the inspector</p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
           <Image
