@@ -3,44 +3,46 @@ import Image from "next/image";
 import checkoutPaymentError from "@/../public/screenshots/checkout-payment-error.png";
 
 export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) => (
-  <section className="overflow-y-auto p-6" aria-label="Inspection input">
-    <header>
-      <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Inspection input</p>
-      <h1 className="mt-1 text-2xl font-semibold text-slate-100">AI UI QA Inspector</h1>
-      <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-        This inspection package contains the rendered UI state, DOM snippet, and accessibility check
-        result provided to the inspector.
-      </p>
-    </header>
-
-    <section className="mt-6 rounded-xl border border-slate-800 bg-slate-900">
-      <div className="border-b border-slate-800 px-4 py-3">
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">UI state</p>
-        <h2 className="mt-1 text-lg font-semibold text-slate-100">{target.screenName}</h2>
-        <p className="mt-1 text-sm text-slate-400">{target.stateName}</p>
-        <p className="mt-3 text-sm leading-6 text-slate-400">{target.description}</p>
+  <section
+    className="rounded-2xl border border-slate-200 bg-white shadow-sm"
+    aria-label="UI under inspection"
+  >
+    <div className="border-b border-slate-200 px-5 py-4">
+      <h2 className="text-xs font-medium uppercase tracking-wide text-slate-500">
+        UI under inspection
+      </h2>
+      <div className="mt-1 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="text-lg font-semibold text-slate-950">{target.screenName}</p>
+          <p className="mt-1 text-sm text-slate-600">{target.stateName}</p>
+        </div>
+        <p className="max-w-2xl text-sm leading-6 text-slate-600">{target.description}</p>
       </div>
-      <div className="p-4">
-        <Image
-          src={checkoutPaymentError}
-          alt="Checkout form payment error state"
-          loading="eager"
-          sizes="(min-width: 1024px) 55vw, 100vw"
-          className="h-auto w-full object-contain"
-        />
-      </div>
-    </section>
-
-    <section className="mt-6 rounded-xl border border-slate-800 bg-slate-900">
-      <div className="border-b border-slate-800 px-4 py-3">
-        <h3 className="text-sm font-medium text-slate-100">DOM snippet</h3>
-      </div>
-
-      <div className="p-4">
-        <pre className="overflow-x-auto whitespace-pre-wrap rounded-lg bg-slate-950 p-4 text-xs leading-6 text-slate-300">
+    </div>
+    <div className="grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_420px]">
+      <section>
+        <div className="mb-3">
+          <h3 className="text-sm font-medium text-slate-950">Screenshot</h3>
+          <p className="mt-1 text-xs text-slate-500">Rendered UI state sent to the inspector</p>
+        </div>
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <Image
+            src={checkoutPaymentError}
+            alt="Checkout form payment error state"
+            loading="eager"
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            className="mx-auto h-auto w-full object-contain"
+          />
+        </div>
+      </section>
+      <section>
+        <div className="mb-3">
+          <h3 className="text-sm font-medium text-slate-950">DOM Snippet</h3>
+        </div>
+        <pre className="max-h-[340px] overflow-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs leading-6 text-slate-200">
           <code>{target.domSnippet}</code>
         </pre>
-      </div>
-    </section>
+      </section>
+    </div>
   </section>
 );

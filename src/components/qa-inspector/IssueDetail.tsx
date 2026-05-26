@@ -3,9 +3,9 @@ import { EvidenceItem } from "./EvidenceItem";
 import { ResultRow } from "./ResultRow";
 
 export const IssueDetail = ({ issue }: { issue: QAIssue }) => (
-  <section className="rounded-xl border border-slate-800 bg-slate-900">
-    <div className="border-b border-slate-800 px-4 py-3">
-      <h3 className="text-sm font-medium text-slate-100">Finding detail</h3>
+  <section className="rounded-xl border border-slate-200 bg-white">
+    <div className="border-b border-slate-200 px-4 py-3">
+      <h3 className="text-sm font-medium text-slate-950">Finding detail</h3>
     </div>
 
     <div className="space-y-4 p-4">

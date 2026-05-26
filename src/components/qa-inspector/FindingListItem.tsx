@@ -17,16 +17,17 @@ export const FindingListItem = ({
     onClick={onSelect}
     className={`w-full rounded-xl border p-4 text-left transition ${
       isSelected
-        ? "border-slate-500 bg-slate-900"
-        : "border-slate-800 bg-slate-900/50 hover:border-slate-700 hover:bg-slate-900"
-    }`}>
+        ? "border-slate-400 bg-slate-50 ring-1 ring-slate-300"
+        : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
+    }`}
+  >
     <div className="flex items-start justify-between gap-4">
       <div className="min-w-0">
         <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
           Finding {index + 1}
         </p>
 
-        <p className="mt-1 text-sm font-semibold text-slate-100">{issue.affectedElement}</p>
+        <p className="mt-1 text-sm font-semibold text-slate-950">{issue.affectedElement}</p>
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <IssueTypeBadge issueType={issue.issueType} />
@@ -35,7 +36,7 @@ export const FindingListItem = ({
       </div>
 
       <span
-        className={`mt-1 h-2 w-2 rounded-full ${isSelected ? "bg-slate-100" : "bg-slate-700"}`}
+        className={`mt-1 h-2 w-2 rounded-full ${isSelected ? "bg-slate-950" : "bg-slate-300"}`}
         aria-hidden="true"
       />
     </div>
