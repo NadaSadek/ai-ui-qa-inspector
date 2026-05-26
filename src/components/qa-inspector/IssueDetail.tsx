@@ -5,7 +5,7 @@ import { ResultRow } from "./ResultRow";
 export const IssueDetail = ({ issue }: { issue: QAIssue }) => (
   <section className="rounded-xl border border-slate-200 bg-white">
     <div className="border-b border-slate-200 px-4 py-3">
-      <h3 className="mt-1 text-sm font-semibold text-slate-950">{issue.affectedElement}</h3>
+      <span className="mt-1 text-sm font-semibold text-slate-950">{issue.affectedElement}</span>
     </div>
     <div className="space-y-4 p-4">
       <div>

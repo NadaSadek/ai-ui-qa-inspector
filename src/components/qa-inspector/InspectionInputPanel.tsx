@@ -35,7 +35,7 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
       </section>
       <section>
         <div className="mb-3">
-          <h3 className="text-sm font-medium text-slate-950">DOM Snippet</h3>
+          <h3 className="text-sm font-medium text-slate-950">DOM snippet</h3>
         </div>
         <pre className="max-h-[300px] overflow-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs leading-6 text-slate-200">
           <code>{target.domSnippet}</code>

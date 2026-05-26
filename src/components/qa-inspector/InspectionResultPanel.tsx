@@ -26,20 +26,22 @@ export const InspectionResultPanel = ({
       aria-label="Inspection result"
     >
       <div className="border-b border-slate-200 px-5 py-4">
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-600">
+        <h2 className="text-xs font-medium uppercase tracking-wide text-slate-600">
           Inspection report
-        </p>
+        </h2>
         <div className="mt-1 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h2 aria-live="polite" className="text-lg font-semibold text-slate-950">
+            <p aria-live="polite" className="text-lg font-semibold text-slate-950">
               {issueCount} {issueCount === 1 ? "finding" : "findings"} found
-            </h2>
+            </p>
           </div>
         </div>
       </div>
-
       <div className="grid gap-5 p-5 lg:grid-cols-[360px_minmax(0,1fr)]">
-        <section aria-label="Findings list">
+        <section aria-labelledby="findings-heading">
+          <h3 id="findings-heading" className="sr-only">
+            Findings
+          </h3>
           <ul className="space-y-2">
             {result.issues.map((issue, index) => (
               <li key={issue.id}>
