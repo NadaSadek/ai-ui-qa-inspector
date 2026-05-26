@@ -33,14 +33,7 @@ export function QAInspectorView() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          id: inspectionTarget.id,
-          screenName: inspectionTarget.screenName,
-          stateName: inspectionTarget.stateName,
-          description: inspectionTarget.description,
-          screenshotDescription: inspectionTarget.screenshotDescription,
-          domSnippet: inspectionTarget.domSnippet,
-        }),
+        body: JSON.stringify(inspectionTarget),
       });
 
       if (!response.ok) {
