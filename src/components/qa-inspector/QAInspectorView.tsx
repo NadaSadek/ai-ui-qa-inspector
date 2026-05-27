@@ -2,15 +2,23 @@
 
 import { useMemo, useState } from "react";
 import type { QAInspectionResult } from "@/lib/ai/schema";
-import { inspectionTarget } from "@/lib/data/inspectionTarget";
+import { inspectionTargets } from "@/lib/data/inspectionTargets";
 import { InspectionInputPanel } from "./InspectionInputPanel";
 import { InspectionResultPanel } from "./InspectionResultPanel";
+import { InspectionCaseSelector } from "./InspectionCaseSelector";
 
 export function QAInspectorView() {
   const [inspectionResult, setInspectionResult] = useState<QAInspectionResult | null>(null);
   const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
   const [isInspecting, setIsInspecting] = useState(false);
   const [inspectionError, setInspectionError] = useState<string | null>(null);
+  const [selectedTargetId, setSelectedTargetId] = useState(inspectionTargets[0].id);
+
+  const selectedTarget = useMemo(
+    () =>
+      inspectionTargets.find((target) => target.id === selectedTargetId) ?? inspectionTargets[0],
+    [selectedTargetId]
+  );
 
   const selectedIssue = useMemo(() => {
     if (!inspectionResult) {
@@ -23,6 +31,13 @@ export function QAInspectorView() {
     );
   }, [inspectionResult, selectedIssueId]);
 
+  function handleSelectTarget(targetId: string) {
+    setSelectedTargetId(targetId);
+    setInspectionResult(null);
+    setSelectedIssueId(null);
+    setInspectionError(null);
+  }
+
   async function handleRunInspection() {
     setIsInspecting(true);
     setInspectionError(null);
@@ -33,7 +48,7 @@ export function QAInspectorView() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inspectionTarget),
+        body: JSON.stringify(selectedTarget),
       });
 
       if (!response.ok) {
@@ -88,7 +103,12 @@ export function QAInspectorView() {
           ) : null}
         </header>
 
-        <InspectionInputPanel target={inspectionTarget} />
+        <InspectionCaseSelector
+          targets={inspectionTargets}
+          selectedTargetId={selectedTarget.id}
+          onChange={handleSelectTarget}
+        />
+        <InspectionInputPanel target={selectedTarget} />
         <InspectionResultPanel
           result={inspectionResult}
           selectedIssue={selectedIssue}
