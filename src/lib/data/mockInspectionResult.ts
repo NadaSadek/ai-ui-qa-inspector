@@ -354,4 +354,60 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "toast-short-duration": {
+    targetId: "toast-short-duration",
+    summary:
+      "The save confirmation toast gives visible feedback, but it may not be announced to assistive technologies, overlaps the main content area, and may disappear before users have enough time to read it.",
+    issues: [
+      {
+        id: "toast-not-announced",
+        title: "Toast may not be announced",
+        issueType: "accessibility",
+        severity: "medium",
+        affectedElement: "Success toast notification",
+        evidence: {
+          screenshotObservation:
+            "A pale-green toast appears in the upper-right with the message 'Saved' and 'Your changes were saved.'",
+          domEvidence:
+            '<div class="toast success" data-duration="2500"><strong>Saved</strong><p>Your changes were saved.</p></div>',
+        },
+        userImpact:
+          "Screen reader users may not be notified that the save action succeeded when the toast appears.",
+        suggestedFix:
+          'Expose the toast as non-interruptive status feedback using role="status" or aria-live="polite". Keep the visible message text inside the live region and consider aria-atomic="true" if the message is updated dynamically.',
+      },
+      {
+        id: "toast-overlaps-content",
+        title: "Toast overlaps main content",
+        issueType: "visual_hierarchy",
+        severity: "medium",
+        affectedElement: "Success toast notification",
+        evidence: {
+          screenshotObservation:
+            "The toast is positioned over the top-right area of the profile settings card.",
+          domEvidence: '<div class="toast success" data-duration="2500">',
+        },
+        userImpact:
+          "The confirmation message can compete with or obscure primary page content, making the state change feel visually intrusive.",
+        suggestedFix:
+          "Position toast notifications in a reserved viewport area with enough spacing from primary content, or offset the page layout so transient feedback does not cover important UI.",
+      },
+      {
+        id: "toast-feedback-too-temporary",
+        title: "Toast feedback may disappear too quickly",
+        issueType: "state_feedback",
+        severity: "medium",
+        affectedElement: "Success toast notification",
+        evidence: {
+          screenshotObservation:
+            "The success message is shown as a temporary toast rather than persistent inline feedback.",
+          domEvidence: '<div class="toast success" data-duration="2500">',
+        },
+        userImpact:
+          "Users may miss the confirmation if the toast disappears quickly, especially when reading slowly, using magnification, or shifting focus after saving.",
+        suggestedFix:
+          "Use a longer duration for important confirmations, provide a dismiss control for persistent toasts, or add inline confirmation near the saved form state.",
+      },
+    ],
+  },
 };

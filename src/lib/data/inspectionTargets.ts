@@ -247,4 +247,27 @@ export const inspectionTargets: InspectionTarget[] = [
 </form>`,
     screenshotSrc: "/screenshots/search-filters-poor-labels.png",
   },
+  {
+    id: "toast-short-duration",
+    screenName: "Save confirmation",
+    stateName: "Success toast visible",
+    domSnippet: `<main>
+  <form aria-label="Profile settings">
+    <label for="display-name">Display name</label>
+    <input
+      id="display-name"
+      name="displayName"
+      value="Nada"
+    />
+
+    <button type="submit">Save</button>
+  </form>
+
+  <div class="toast success" data-duration="2500">
+    <strong>Saved</strong>
+    <p>Your changes were saved.</p>
+  </div>
+</main>`,
+    screenshotSrc: "/screenshots/toast-short-duration.png",
+  },
 ];
