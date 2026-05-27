@@ -14,7 +14,16 @@ export async function POST(request: Request) {
   const inspectionInput = parsedRequest.data;
 
   if (process.env.ENABLE_LIVE_AI !== "true") {
-    const parsedResult = qaInspectionResultSchema.safeParse(mockInspectionResult);
+    const mockResult = mockInspectionResult[inspectionInput.id];
+
+    if (!mockResult) {
+      return NextResponse.json(
+        { error: "No mock inspection result found for this target." },
+        { status: 404 }
+      );
+    }
+
+    const parsedResult = qaInspectionResultSchema.safeParse(mockResult);
 
     if (!parsedResult.success) {
       return NextResponse.json(

@@ -42,7 +42,7 @@ export const InspectionCaseSelector = ({
         >
           {targets.map((target) => (
             <option key={target.id} value={target.id}>
-              {target.screenName} — {target.stateName}
+              {target.screenName} | {target.stateName}
             </option>
           ))}
         </select>
