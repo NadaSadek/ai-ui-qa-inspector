@@ -113,4 +113,43 @@ export const inspectionTargets: InspectionTarget[] = [
 </section>`,
     screenshotSrc: "/screenshots/data-table-unclear-headers.png",
   },
+  {
+    id: "settings-modal-focus-risk",
+    screenName: "Settings modal",
+    stateName: "Notification preferences open",
+    domSnippet: `<section>
+  <h1>Account settings</h1>
+  <p>Manage notifications and workspace preferences.</p>
+
+  <div class="modal-backdrop">
+    <div class="modal-panel">
+      <div>
+        <h2>Notification preferences</h2>
+        <p>Choose which updates you want to receive.</p>
+      </div>
+
+      <div class="close-control">×</div>
+
+      <label>
+        <input type="checkbox" name="productUpdates" />
+        Product updates
+      </label>
+
+      <label>
+        <input type="checkbox" name="billingReminders" />
+        Billing reminders
+      </label>
+
+      <label>
+        <input type="checkbox" name="weeklySummary" />
+        Weekly summary
+      </label>
+
+      <button type="button">Cancel</button>
+      <button type="submit">Save</button>
+    </div>
+  </div>
+</section>`,
+    screenshotSrc: "/screenshots/settings-modal-focus-risk.png",
+  },
 ];

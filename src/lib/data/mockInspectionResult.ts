@@ -161,4 +161,43 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "settings-modal-focus-risk": {
+    targetId: "settings-modal-focus-risk",
+    summary:
+      "The notification preferences modal is visually clear, but its dialog structure and close control are not semantically exposed for keyboard and assistive technology users.",
+    issues: [
+      {
+        id: "modal-missing-dialog-semantics",
+        title: "Modal is missing dialog semantics",
+        issueType: "accessibility",
+        severity: "high",
+        affectedElement: "Notification preferences modal",
+        evidence: {
+          screenshotObservation:
+            "A modal appears over the account settings page with a visible backdrop and notification preference controls.",
+          domEvidence:
+            '<div class="modal-backdrop"><div class="modal-panel"><h2>Notification preferences</h2>...</div></div>',
+        },
+        userImpact:
+          "Assistive technology users may not be told that a dialog opened or understand which content belongs to the active modal.",
+        suggestedFix:
+          'Render the modal container with role="dialog", aria-modal="true", and aria-labelledby pointing to the modal heading. Manage focus when the modal opens and returns focus when it closes.',
+      },
+      {
+        id: "modal-close-control-not-button",
+        title: "Close control is not a button",
+        issueType: "implementation",
+        severity: "medium",
+        affectedElement: "Modal close control",
+        evidence: {
+          screenshotObservation: "The modal has a visible × close control in the top-right corner.",
+          domEvidence: '<div class="close-control">×</div>',
+        },
+        userImpact:
+          "Keyboard users may not be able to focus or activate the close control reliably, and screen readers may not announce it as an action.",
+        suggestedFix:
+          'Use a native <button type="button" aria-label="Close notification preferences">×</button> for the close control.',
+      },
+    ],
+  },
 };
