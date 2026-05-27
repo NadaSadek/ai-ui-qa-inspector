@@ -121,4 +121,44 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "data-table-unclear-headers": {
+    targetId: "data-table-unclear-headers",
+    summary:
+      "The invoice table is visually structured, but the header row is not marked up with semantic table headers, which weakens navigation and context for assistive technologies.",
+    issues: [
+      {
+        id: "table-headers-use-td",
+        title: "Table headers are not semantic",
+        issueType: "accessibility",
+        severity: "high",
+        affectedElement: "Invoice table header row",
+        evidence: {
+          screenshotObservation:
+            "The table shows a header-like row with Customer, Status, Amount, and Date above the invoice rows.",
+          domEvidence:
+            "<thead><tr><td>Customer</td><td>Status</td><td>Amount</td><td>Date</td></tr></thead>",
+        },
+        userImpact:
+          "Screen reader users may not get proper column header context when navigating invoice rows, making the table harder to understand.",
+        suggestedFix:
+          'Use <th scope="col"> for each column header instead of <td>. For example, <th scope="col">Customer</th>.',
+      },
+      {
+        id: "failed-status-lacks-visual-context",
+        title: "Failed invoice status lacks extra context",
+        issueType: "ux_clarity",
+        severity: "medium",
+        affectedElement: "Failed invoice row",
+        evidence: {
+          screenshotObservation:
+            "One invoice row shows the status 'Failed' without additional explanation or next action.",
+          domEvidence: "<tr><td>OrbitDesk</td><td>Failed</td><td>$89</td><td>May 22</td></tr>",
+        },
+        userImpact:
+          "Users may see that an invoice failed but not know whether they should retry payment, contact the customer, or inspect the invoice.",
+        suggestedFix:
+          "Add a clear next action or contextual link for failed rows, such as 'Review failure' or 'Retry payment', depending on the product workflow.",
+      },
+    ],
+  },
 };

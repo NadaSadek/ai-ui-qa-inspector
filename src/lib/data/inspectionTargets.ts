@@ -71,4 +71,46 @@ export const inspectionTargets: InspectionTarget[] = [
 </header>`,
     screenshotSrc: "/screenshots/account-menu-non-semantic-trigger.png",
   },
+  {
+    id: "data-table-unclear-headers",
+    screenName: "Invoice table",
+    stateName: "Populated table",
+    domSnippet: `<section>
+  <h1>Invoices</h1>
+  <p>Recent billing activity.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Customer</td>
+        <td>Status</td>
+        <td>Amount</td>
+        <td>Date</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Brightlane Analytics</td>
+        <td>Open</td>
+        <td>$240</td>
+        <td>Today</td>
+      </tr>
+      <tr>
+        <td>Cedarflow</td>
+        <td>Paid</td>
+        <td>$1,240</td>
+        <td>Yesterday</td>
+      </tr>
+      <tr>
+        <td>OrbitDesk</td>
+        <td>Failed</td>
+        <td>$89</td>
+        <td>May 22</td>
+      </tr>
+    </tbody>
+  </table>
+</section>`,
+    screenshotSrc: "/screenshots/data-table-unclear-headers.png",
+  },
 ];
