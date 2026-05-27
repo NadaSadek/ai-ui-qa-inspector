@@ -39,10 +39,6 @@ export const FindingListItem = ({
             <SeverityBadge severity={issue.severity} />
           </div>
         </div>
-        <span
-          className={`mt-1 h-2 w-2 rounded-full ${isSelected ? "bg-slate-950" : "bg-slate-300"}`}
-          aria-hidden="true"
-        />
       </div>
     </button>
   );
