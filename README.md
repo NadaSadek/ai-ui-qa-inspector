@@ -12,3 +12,18 @@ An AI-assisted frontend QA workbench that inspects UI screenshots, DOM snippets 
 ## Tech stack
 
 Next.js, TypeScript, Vercel AI SDK, Zod, Tailwind.
+
+# AI UI QA Inspector sample cases
+
+10 fixture cases with static screenshots and DOM snippets.
+
+- checkout-payment-error
+- login-unclear-error
+- settings-modal-focus-risk
+- pricing-mobile-hierarchy
+- empty-table-vague-cta
+- search-filters-poor-labels
+- toast-short-duration
+- account-menu-non-semantic-trigger
+- data-table-unclear-headers
+- onboarding-stepper-low-contrast

@@ -410,4 +410,45 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "onboarding-stepper-low-contrast": {
+    targetId: "onboarding-stepper-low-contrast",
+    summary:
+      "The onboarding stepper shows progress visually, but the current step is not programmatically exposed and the low-contrast styling makes the progress state harder to scan.",
+    issues: [
+      {
+        id: "current-step-not-programmatically-exposed",
+        title: "Current step is not programmatically exposed",
+        issueType: "accessibility",
+        severity: "medium",
+        affectedElement: "Onboarding stepper current step",
+        evidence: {
+          screenshotObservation:
+            "The stepper shows four steps: Account, Team, Billing, and Finish, with Team presented as the current step.",
+          domEvidence:
+            '<ol class="stepper"><li>Account</li><li class="current">Team</li><li>Billing</li><li>Finish</li></ol>',
+        },
+        userImpact:
+          "Users relying on assistive technologies may not be told which onboarding step is current, making it harder to understand their position in the flow.",
+        suggestedFix:
+          'Add aria-current="step" to the current step item. Keep the visual current-step styling aligned with the programmatic state.',
+      },
+      {
+        id: "stepper-progress-low-contrast",
+        title: "Stepper progress styling has weak contrast",
+        issueType: "accessibility",
+        severity: "medium",
+        affectedElement: "Onboarding stepper labels and indicators",
+        evidence: {
+          screenshotObservation:
+            "The stepper numbers and labels appear pale against the white background, making the progress state visually subtle.",
+          domEvidence:
+            '<ol class="stepper"><li>Account</li><li class="current">Team</li><li>Billing</li><li>Finish</li></ol>',
+        },
+        userImpact:
+          "Low-vision users may have difficulty distinguishing the step labels and identifying the current progress state quickly.",
+        suggestedFix:
+          "Increase contrast for the step labels and indicators, especially the current step. Verify the final colors against WCAG contrast requirements and avoid relying on subtle color differences alone.",
+      },
+    ],
+  },
 };

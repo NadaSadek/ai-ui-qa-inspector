@@ -270,4 +270,34 @@ export const inspectionTargets: InspectionTarget[] = [
 </main>`,
     screenshotSrc: "/screenshots/toast-short-duration.png",
   },
+  {
+    id: "onboarding-stepper-low-contrast",
+    screenName: "Onboarding stepper",
+    stateName: "Team invite step",
+    domSnippet: `<section>
+  <h1>Set up your workspace</h1>
+  <p>Complete the steps below to start collaborating.</p>
+  <ol class="stepper">
+    <li>Account</li>
+    <li class="current">Team</li>
+    <li>Billing</li>
+    <li>Finish</li>
+  </ol>
+  <form>
+    <h2>Invite your team</h2>
+    <p>Add teammates to collaborate on projects.</p>
+
+    <label for="invite-email">Teammate email</label>
+    <input
+      id="invite-email"
+      name="inviteEmail"
+      type="email"
+      placeholder="teammate@example.com"
+    />
+
+    <button type="submit">Continue</button>
+  </form>
+</section>`,
+    screenshotSrc: "/screenshots/onboarding-stepper-low-contrast.png",
+  },
 ];
