@@ -17,13 +17,16 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
         </div>
       </div>
     </div>
-    <div className="grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_420px]">
-      <section aria-labelledby="screenshot-heading">
+    <div className="grid gap-5 p-5 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-stretch">
+      <section
+        aria-labelledby="screenshot-heading"
+        className="flex min-h-0 flex-col lg:h-[560px] lg:max-h-[65vh]"
+      >
         <h3 id="screenshot-heading" className="mb-3 text-sm font-medium text-slate-950">
           Screenshot
         </h3>
 
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-4">
           <Image
             src={target.screenshotSrc}
             alt={`${target.screenName} — ${target.stateName}`}
@@ -31,18 +34,22 @@ export const InspectionInputPanel = ({ target }: { target: InspectionTarget }) =
             height={900}
             loading="eager"
             sizes="(min-width: 1024px) 55vw, 100vw"
-            className="mx-auto h-auto w-full max-w-2xl object-contain"
+            className="h-full w-full object-contain"
           />
         </div>
       </section>
-      <section aria-labelledby="dom-snippet-heading">
+
+      <section
+        aria-labelledby="dom-snippet-heading"
+        className="flex min-h-0 flex-col lg:h-[560px] lg:max-h-[65vh]"
+      >
         <h3 id="dom-snippet-heading" className="mb-3 text-sm font-medium text-slate-950">
           DOM snippet
         </h3>
         <pre
           tabIndex={0}
           aria-labelledby="dom-snippet-heading"
-          className="max-h-[300px] overflow-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs leading-6 text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+          className="min-h-0 flex-1 overflow-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-950 p-4 text-[11px] leading-5 text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
         >
           <code>{target.domSnippet}</code>
         </pre>
