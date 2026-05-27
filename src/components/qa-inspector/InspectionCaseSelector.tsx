@@ -15,15 +15,10 @@ export const InspectionCaseSelector = ({
   >
     <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <h2
-          id="case-selector-heading"
-          className="text-sm font-semibold text-slate-950"
-        >
+        <h2 id="case-selector-heading" className="text-sm font-semibold text-slate-950">
           Inspection case
         </h2>
-        <p className="mt-1 text-sm text-slate-600">
-          Choose the UI state to inspect.
-        </p>
+        <p className="mt-1 text-sm text-slate-600">Choose the UI state to inspect.</p>
       </div>
 
       <div className="sm:min-w-80">

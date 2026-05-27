@@ -209,4 +209,42 @@ export const inspectionTargets: InspectionTarget[] = [
 </section>`,
     screenshotSrc: "/screenshots/empty-table-vague-cta.png",
   },
+  {
+    id: "search-filters-poor-labels",
+    screenName: "Search filters",
+    stateName: "Expanded filter panel",
+    domSnippet: `<form aria-label="Customer search filters">
+  <label for="query">Search</label>
+  <input
+    id="query"
+    name="query"
+    placeholder="Name, email, company"
+  />
+
+  <label for="type">Type</label>
+  <select id="type" name="type">
+    <option value="" disabled>Select</option>
+    <option value="customer">Customer</option>
+    <option value="trial">Trial</option>
+    <option value="enterprise">Enterprise</option>
+  </select>
+
+  <label for="from">From</label>
+  <input
+    id="from"
+    name="from"
+    placeholder="dd/mm/yyyy"
+  />
+
+  <label for="to">To</label>
+  <input
+    id="to"
+    name="to"
+    placeholder="dd/mm/yyyy"
+  />
+
+  <button type="submit">Apply filters</button>
+</form>`,
+    screenshotSrc: "/screenshots/search-filters-poor-labels.png",
+  },
 ];

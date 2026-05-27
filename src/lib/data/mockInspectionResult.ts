@@ -297,4 +297,61 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "search-filters-poor-labels": {
+    targetId: "search-filters-poor-labels",
+    summary:
+      "The filter panel has visible labels, but several are too generic to make the filtering behavior clear. The date fields also rely on freeform text placeholders instead of stronger date input affordances.",
+    issues: [
+      {
+        id: "generic-search-filter-label",
+        title: "Search filter label is too generic",
+        issueType: "ux_clarity",
+        severity: "medium",
+        affectedElement: "Search input",
+        evidence: {
+          screenshotObservation:
+            "The first field is labeled 'Search' with placeholder text 'Name, email, company'.",
+          domEvidence:
+            '<label for="query">Search</label><input id="query" name="query" placeholder="Name, email, company" />',
+        },
+        userImpact:
+          "Users may need to read the placeholder to understand what the field searches, and that guidance disappears once they start typing.",
+        suggestedFix:
+          "Use a more descriptive visible label, such as 'Search customers', and keep the searchable fields as helper text, for example 'Name, email, or company'.",
+      },
+      {
+        id: "ambiguous-type-filter-label",
+        title: "Type filter does not explain what type means",
+        issueType: "ux_clarity",
+        severity: "medium",
+        affectedElement: "Type select",
+        evidence: {
+          screenshotObservation:
+            "The second field is labeled 'Type' and shows a default option of 'Select'.",
+          domEvidence:
+            '<label for="type">Type</label><select id="type" name="type"><option value="" disabled>Select</option><option value="customer">Customer</option><option value="trial">Trial</option><option value="enterprise">Enterprise</option></select>',
+        },
+        userImpact:
+          "Users may not understand whether this filter refers to customer type, account type, plan type, or lifecycle status.",
+        suggestedFix:
+          "Rename the label to describe the domain more clearly, such as 'Account type' or 'Customer type'. Use a clearer placeholder like 'Choose account type'.",
+      },
+      {
+        id: "date-range-fields-use-freeform-text",
+        title: "Date range fields rely on freeform text",
+        issueType: "ux_clarity",
+        severity: "medium",
+        affectedElement: "From and To date inputs",
+        evidence: {
+          screenshotObservation: "The From and To fields show 'dd/mm/yyyy' placeholders.",
+          domEvidence:
+            '<input id="from" name="from" placeholder="dd/mm/yyyy" /><input id="to" name="to" placeholder="dd/mm/yyyy" />',
+        },
+        userImpact:
+          "Users may enter dates in the wrong format or be unsure which date range the fields apply to.",
+        suggestedFix:
+          "Use clearer labels such as 'Created from' and 'Created to' or 'Billing date from/to'. Prefer type=\"date\" or a date picker when the product needs structured date input.",
+      },
+    ],
+  },
 };
