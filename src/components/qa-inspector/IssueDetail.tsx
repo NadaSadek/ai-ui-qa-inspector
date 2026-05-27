@@ -9,7 +9,7 @@ export const IssueDetail = ({ issue }: { issue: QAIssue }) => (
     </div>
     <div className="space-y-4 p-4">
       <div>
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-600">Evidence</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">Evidence</p>
         <div className="mt-2 grid gap-3 md:grid-cols-2">
           <EvidenceItem title="Screenshot">{issue.evidence.visualObservation}</EvidenceItem>
           <EvidenceItem title="DOM">{issue.evidence.domEvidence}</EvidenceItem>
