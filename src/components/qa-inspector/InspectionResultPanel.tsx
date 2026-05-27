@@ -2,18 +2,25 @@ import type { QAInspectionResult, QAIssue } from "@/lib/ai/schema";
 import { IssueDetail } from "./IssueDetail";
 import { FindingListItem } from "./FindingListItem";
 import { EmptyResultState } from "./EmptyResultState";
+import { InspectionResultLoadingState } from "./InspectionResultLoadingState";
 
 export const InspectionResultPanel = ({
   result,
   selectedIssue,
   selectedIssueId,
+  isInspecting,
   onSelectIssue,
 }: {
   result: QAInspectionResult | null;
   selectedIssue: QAIssue | null;
   selectedIssueId: string | null;
+  isInspecting: boolean;
   onSelectIssue: (issueId: string) => void;
 }) => {
+  if (isInspecting) {
+    return <InspectionResultLoadingState />;
+  }
+
   if (!result) {
     return <EmptyResultState />;
   }

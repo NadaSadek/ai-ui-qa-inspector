@@ -41,6 +41,8 @@ export function QAInspectorView() {
   async function handleRunInspection() {
     setIsInspecting(true);
     setInspectionError(null);
+    setInspectionResult(null);
+    setSelectedIssueId(null);
 
     try {
       const response = await fetch("/api/inspect-ui", {
@@ -87,7 +89,7 @@ export function QAInspectorView() {
               type="button"
               onClick={handleRunInspection}
               disabled={isInspecting}
-              className="w-fit rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+              className="w-fit rounded-lg bg-indigo-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-indigo-400 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-700 focus-visible:ring-offset-2"
             >
               {isInspecting
                 ? "Inspecting…"
@@ -114,6 +116,7 @@ export function QAInspectorView() {
           selectedIssue={selectedIssue}
           selectedIssueId={selectedIssue?.id ?? null}
           onSelectIssue={setSelectedIssueId}
+          isInspecting={isInspecting}
         />
       </div>
     </section>
