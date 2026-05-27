@@ -184,4 +184,29 @@ export const inspectionTargets: InspectionTarget[] = [
 </section>`,
     screenshotSrc: "/screenshots/pricing-mobile-hierarchy.png",
   },
+  {
+    id: "empty-table-vague-cta",
+    screenName: "Projects table",
+    stateName: "Empty state",
+    domSnippet: `<section>
+  <h1>Projects</h1>
+  <p>Track active implementation work.</p>
+
+  <button type="button">Add</button>
+
+  <div class="table">
+    <div class="table-header">
+      <span>Name</span>
+      <span>Owner</span>
+      <span>Status</span>
+    </div>
+
+    <div class="empty-state">
+      <h2>No data</h2>
+      <p>Try changing filters or add something.</p>
+    </div>
+  </div>
+</section>`,
+    screenshotSrc: "/screenshots/empty-table-vague-cta.png",
+  },
 ];

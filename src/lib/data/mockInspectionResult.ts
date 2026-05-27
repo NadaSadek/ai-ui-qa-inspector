@@ -240,4 +240,61 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "empty-table-vague-cta": {
+    targetId: "empty-table-vague-cta",
+    summary:
+      "The empty Projects table shows the missing-data state, but the action copy and table-like structure make the next step less clear than it should be.",
+    issues: [
+      {
+        id: "vague-add-button-label",
+        title: "Add button label is vague",
+        issueType: "ux_clarity",
+        severity: "medium",
+        affectedElement: "Add button",
+        evidence: {
+          screenshotObservation:
+            "The primary action near the Projects header is labeled only 'Add'.",
+          domEvidence: '<button type="button">Add</button>',
+        },
+        userImpact:
+          "Users may not immediately understand what the button will create, especially in an empty state where there is no existing project context.",
+        suggestedFix:
+          "Use a more specific visible label such as 'Add project'. Avoid relying only on an aria-label when visible copy can be clearer for everyone.",
+      },
+      {
+        id: "empty-state-message-not-actionable",
+        title: "Empty state message is not actionable",
+        issueType: "ux_clarity",
+        severity: "medium",
+        affectedElement: "Projects empty state",
+        evidence: {
+          screenshotObservation:
+            "The empty state says 'No data' and 'Try changing filters or add something.'",
+          domEvidence:
+            '<div class="empty-state"><h2>No data</h2><p>Try changing filters or add something.</p></div>',
+        },
+        userImpact:
+          "Users may not know whether there are no projects yet, filters are hiding results, or which action they should take next.",
+        suggestedFix:
+          "Use more specific empty-state copy, such as 'No projects yet'. Place a clear primary action like 'Add project' inside the empty state, and show a separate 'Reset filters' action only when filters are actually active.",
+      },
+      {
+        id: "table-like-region-uses-divs",
+        title: "Table-like region uses non-semantic markup",
+        issueType: "implementation",
+        severity: "medium",
+        affectedElement: "Projects table region",
+        evidence: {
+          screenshotObservation:
+            "The region visually looks like a table with Name, Owner, and Status columns.",
+          domEvidence:
+            '<div class="table-header"><span>Name</span><span>Owner</span><span>Status</span></div>',
+        },
+        userImpact:
+          "Assistive technology users may not receive table navigation or column context if this region later contains tabular project data.",
+        suggestedFix:
+          'If this region represents tabular project data, use semantic table markup with <table>, <thead>, <tr>, and <th scope="col">. If it is only an empty-state container, simplify the visual treatment so it does not imply a data table without table semantics.',
+      },
+    ],
+  },
 };
