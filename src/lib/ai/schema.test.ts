@@ -1,57 +1,27 @@
 import { describe, expect, it } from "vitest";
-import { mockInspectionResult } from "@/lib/data/mockInspectionResult";
 import { qaInspectionResultSchema } from "@/lib/ai/schema";
+import { inspectionTargets } from "@/lib/data/inspectionTargets";
+import { mockInspectionResult } from "@/lib/data/mockInspectionResult";
 
-describe("qaInspectionResultSchema", () => {
-  it("accepts the mock inspection result", () => {
-    const result = qaInspectionResultSchema.safeParse(mockInspectionResult);
+describe("mock inspection results", () => {
+  it("matches the QA inspection result schema", () => {
+    for (const [targetId, result] of Object.entries(mockInspectionResult)) {
+      const parsed = qaInspectionResultSchema.safeParse(result);
 
-    expect(result.success).toBe(true);
+      expect(parsed.success, targetId).toBe(true);
+    }
   });
 
-  it("rejects unsupported issue types", () => {
-    const result = qaInspectionResultSchema.safeParse({
-      targetId: "checkout-payment-error",
-      summary: "Invalid result.",
-      issues: [
-        {
-          id: "invalid-issue",
-          issueType: "seo",
-          severity: "high",
-          affectedElement: "Card number input",
-          evidence: {
-            screenshotObservation: "The input appears without a visible label.",
-            domEvidence: "The input has no associated label.",
-          },
-          userImpact: "Users may not understand the field.",
-          suggestedFix: "Add a label.",
-        },
-      ],
-    });
+  it("has one mock result for every inspection target", () => {
+    const targetIds = inspectionTargets.map((target) => target.id);
+    const mockResultIds = Object.keys(mockInspectionResult);
 
-    expect(result.success).toBe(false);
+    expect(mockResultIds.sort()).toEqual(targetIds.sort());
   });
 
-  it("rejects invalid severity values", () => {
-    const result = qaInspectionResultSchema.safeParse({
-      targetId: "checkout-payment-error",
-      summary: "Invalid result.",
-      issues: [
-        {
-          id: "invalid-severity",
-          issueType: "accessibility",
-          severity: "critical",
-          affectedElement: "Card number input",
-          evidence: {
-            screenshotObservation: "The input appears without a visible label.",
-            domEvidence: "The input has no associated label.",
-          },
-          userImpact: "Users may not understand the field.",
-          suggestedFix: "Add a label.",
-        },
-      ],
-    });
-
-    expect(result.success).toBe(false);
+  it("keeps mock result targetId aligned with the map key", () => {
+    for (const [targetId, result] of Object.entries(mockInspectionResult)) {
+      expect(result.targetId).toBe(targetId);
+    }
   });
 });

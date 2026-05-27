@@ -13,8 +13,17 @@ export const qaIssueSchema = z.object({
   severity: z.enum(["low", "medium", "high"]),
   affectedElement: z.string().min(1),
   evidence: z.object({
-    screenshotObservation: z.string().min(1),
-    domEvidence: z.string().min(1),
+    visualObservation: z
+      .string()
+      .min(1)
+      .describe(
+        "Only visible facts from the screenshot. Do not mention HTML tags, DOM attributes, ARIA, roles, screen readers, or implementation details."
+      ),
+
+    domEvidence: z
+      .string()
+      .min(1)
+      .describe("The smallest relevant fragment from the DOM snippet that supports the finding."),
   }),
   userImpact: z.string().min(1),
   suggestedFix: z.string().min(1),

@@ -31,32 +31,49 @@ Return developer-facing QA findings for:
 - visual hierarchy
 - implementation issues
 
-Do not invent behavior that is not supported by the screenshot or DOM.
-Do not claim that automated accessibility tooling found an issue unless tool output is provided.
-Prefer concrete frontend remediation advice over generic recommendations.
+Your job is to report the strongest evidence-backed issues, not every possible concern.
 
-Evidence rules:
-- affectedElement must be a human-readable UI element name, not only a CSS selector.
-- screenshotObservation must describe only visible UI details from the screenshot image.
-- screenshotObservation must not mention programmatic association, DOM relationships, ARIA, screen readers, or whether something is announced. Put those in domEvidence, userImpact, or suggestedFix instead.
-- Do not include screen reader behavior, DOM behavior, or implementation assumptions in screenshotObservation.
-- domEvidence must come only from the DOM snippet.
-- domEvidence should quote the smallest relevant DOM fragment, not the full DOM snippet.
-- Do not mention color contrast unless the screenshot image makes a contrast concern visible or explicit contrast evidence is provided.
-- Accessibility issues should be reported only when visible UI details or DOM evidence support a concrete accessibility concern.
-- When inferring assistive technology behavior from DOM, use cautious language such as "may not" unless the evidence is definitive.
-- If multiple fixes apply to the same affected element and same user problem, combine them into one finding. Do not split aria-live, aria-describedby, aria-invalid, or error association into separate findings when they describe the same error feedback problem.
+General rules:
+- Do not invent behavior that is not supported by the screenshot or DOM.
+- Do not claim that automated accessibility tooling found an issue unless tool output is provided.
+- Do not use target IDs, fixture names, file names, or internal test names as user-facing evidence or as the basis for findings.
+- Prefer concrete frontend remediation advice over generic recommendations.
+- Do not create two findings for the same root cause.
+- If multiple fixes apply to the same affected element and same user problem, combine them into one finding.
+- title must be a short human-readable finding title, not an id-like phrase.
+
+Issue selection rules:
 - Do not force accessibility findings. If the strongest issue is UX clarity, visual hierarchy, or state feedback, classify it that way.
+- Accessibility issues should be reported only when visible UI details or DOM evidence support a concrete accessibility concern.
 - Do not recommend ARIA attributes for plain visible text unless there is a real interactive, dynamic, or semantic accessibility problem.
 - Do not treat static badges, labels, or visible text as accessibility issues just because they are implemented as spans.
 - Do not infer missing selected state unless the UI state or DOM indicates the user has already made a selection.
 - For pricing, plan comparison, onboarding, and marketing-style UI, prioritize visual hierarchy, action clarity, information scent, and comparison clarity before accessibility.
-- Do not use target IDs, fixture names, file names, or internal test names as user-facing evidence or as the basis for findings.
+
+Evidence rules:
+- affectedElement must be a human-readable UI element name, not only a CSS selector.
+- visualObservation must describe only visible UI details from the screenshot image.
+- visualObservation must not mention HTML tags, DOM nodes, ARIA attributes, CSS classes, roles, ids, input types, event behavior, keyboard behavior, screen readers, or whether something is announced.
+- If a claim depends on markup, attributes, roles, or semantics, put it in domEvidence, userImpact, or suggestedFix, not visualObservation.
+- For DOM-only issues, visualObservation should describe only the visible UI context, not the implementation problem.
+- domEvidence must come only from the DOM snippet.
+- domEvidence should quote the smallest relevant DOM fragment, not the full DOM snippet.
+- When inferring assistive technology behavior from DOM, use cautious language such as "may not" unless the evidence is definitive.
+- Do not mention color contrast unless the screenshot makes a contrast concern visible or explicit contrast evidence is provided. If contrast was not measured, say it "appears" weak and recommend verification.
+
+Visual evidence examples:
+- Good visualObservation: "The top row visually acts as column headers with Customer, Status, Amount, and Date."
+- Bad visualObservation: "The headers are rendered as td instead of th."
+- Good visualObservation: "The account control shows initials, a user name, and a chevron."
+- Bad visualObservation: "The trigger is a div with no button semantics."
+- Good visualObservation: "A green success toast appears in the upper-right with the message 'Saved'."
+- Bad visualObservation: "The toast has no aria-live attribute."
 
 Severity rules:
 - Use high severity only for blocking issues or serious accessibility failures.
 - Missing accessible names on required checkout, authentication, payment, or critical form controls should usually be high severity.
 - Use medium severity for incomplete feedback that is still visually available or recoverable.
+- Use low severity for minor polish issues that do not block understanding or completion.
 
 Issue type guidance:
 - Use accessibility for concrete assistive technology, keyboard, semantic HTML, labeling, focus, contrast, or announcement issues.
@@ -90,8 +107,7 @@ ${target.domSnippet}
 
 Request rules:
 - targetId must exactly equal "${target.id}".
-- Return the smallest useful set of distinct findings, usually 2 to 4.
-- Do not create two findings for the same root cause.
+- Return the smallest useful set of distinct findings, usually 1 to 4.
 - Use stable, descriptive kebab-case issue ids, e.g. "missing-card-number-label", not generic ids like "ISS-1".`,
           },
           {
