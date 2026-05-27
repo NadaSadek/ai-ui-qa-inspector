@@ -80,4 +80,45 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "account-menu-non-semantic-trigger": {
+    targetId: "account-menu-non-semantic-trigger",
+    summary:
+      "The account dropdown is visually clear, but the trigger and menu items are built with non-semantic elements, which can make the menu harder to operate with keyboard and assistive technologies.",
+    issues: [
+      {
+        id: "account-menu-trigger-not-semantic",
+        title: "Account menu trigger is not semantic",
+        issueType: "implementation",
+        severity: "high",
+        affectedElement: "Account menu trigger",
+        evidence: {
+          screenshotObservation:
+            "The account control appears as a rounded dropdown trigger with avatar, user name, and chevron.",
+          domEvidence:
+            '<div class="account-trigger"><span class="avatar">NS</span><span>Nada Sadek</span><span>⌄</span></div>',
+        },
+        userImpact:
+          "Keyboard and assistive technology users may not be able to identify or operate the menu trigger as an interactive control.",
+        suggestedFix:
+          'Use a native <button type="button"> for the menu trigger. Add aria-haspopup="menu" and aria-expanded to communicate the menu state.',
+      },
+      {
+        id: "account-menu-items-not-semantic",
+        title: "Dropdown items are not semantic actions",
+        issueType: "accessibility",
+        severity: "medium",
+        affectedElement: "Account dropdown menu items",
+        evidence: {
+          screenshotObservation:
+            "The dropdown shows Profile, Billing, and Sign out as selectable menu options.",
+          domEvidence:
+            '<div class="menu"><div>Profile</div><div>Billing</div><div>Sign out</div></div>',
+        },
+        userImpact:
+          "Menu options may not be reachable or announced correctly as actionable items for keyboard and screen reader users.",
+        suggestedFix:
+          "Render navigational items as links and actions as buttons. If using menu semantics, use an appropriate menu pattern with keyboard support.",
+      },
+    ],
+  },
 };

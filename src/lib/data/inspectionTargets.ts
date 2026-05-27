@@ -48,4 +48,27 @@ export const inspectionTargets: InspectionTarget[] = [
 </form>`,
     screenshotSrc: "/screenshots/login-unclear-error.png",
   },
+  {
+    id: "account-menu-non-semantic-trigger",
+    screenName: "Account menu",
+    stateName: "Dropdown open",
+    domSnippet: `<header>
+  <nav aria-label="Primary">
+    <a href="/dashboard">North Analytics</a>
+
+    <div class="account-trigger">
+      <span class="avatar">NS</span>
+      <span>Nada Sadek</span>
+      <span>⌄</span>
+    </div>
+
+    <div class="menu">
+      <div>Profile</div>
+      <div>Billing</div>
+      <div>Sign out</div>
+    </div>
+  </nav>
+</header>`,
+    screenshotSrc: "/screenshots/account-menu-non-semantic-trigger.png",
+  },
 ];
