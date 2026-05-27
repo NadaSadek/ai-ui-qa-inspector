@@ -1,4 +1,3 @@
-import { mockInspectionResult } from "../data/mockInspectionResult";
 import { QAInspectionResult } from "./schema";
 import { getInspectionResultValidationErrors } from "./validateInspectionResult";
 import { describe, expect, it } from "vitest";
