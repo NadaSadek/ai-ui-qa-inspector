@@ -152,4 +152,36 @@ export const inspectionTargets: InspectionTarget[] = [
 </section>`,
     screenshotSrc: "/screenshots/settings-modal-focus-risk.png",
   },
+  {
+    id: "pricing-mobile-hierarchy",
+    screenName: "Pricing page",
+    stateName: "Mobile plan comparison",
+    domSnippet: `<section>
+  <h1>Choose a plan</h1>
+  <p>Upgrade anytime.</p>
+
+  <article class="plan-card">
+    <h2>Starter</h2>
+    <p>$19</p>
+    <p>Good for trying the product</p>
+    <button>Select</button>
+  </article>
+
+  <article class="plan-card">
+    <h2>Pro</h2>
+    <span>Popular</span>
+    <p>$49</p>
+    <p>For growing teams</p>
+    <button>Select</button>
+  </article>
+
+  <article class="plan-card">
+    <h2>Enterprise</h2>
+    <p>Custom</p>
+    <p>Advanced controls</p>
+    <button>Select</button>
+  </article>
+</section>`,
+    screenshotSrc: "/screenshots/pricing-mobile-hierarchy.png",
+  },
 ];

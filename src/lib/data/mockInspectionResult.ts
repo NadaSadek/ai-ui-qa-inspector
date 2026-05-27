@@ -200,4 +200,44 @@ export const mockInspectionResult: Record<string, QAInspectionResult> = {
       },
     ],
   },
+  "pricing-mobile-hierarchy": {
+    targetId: "pricing-mobile-hierarchy",
+    summary:
+      "The mobile pricing comparison is scannable, but the plan actions and recommended plan treatment do not provide enough clarity for confident selection.",
+    issues: [
+      {
+        id: "ambiguous-plan-select-buttons",
+        title: "Plan select buttons are ambiguous",
+        issueType: "accessibility",
+        severity: "medium",
+        affectedElement: "Pricing plan select buttons",
+        evidence: {
+          screenshotObservation:
+            "Each pricing card uses the same button label, 'Select', including Starter, Pro, and Enterprise.",
+          domEvidence: "<button>Select</button>",
+        },
+        userImpact:
+          "Users, especially screen reader users, may have trouble distinguishing which plan each button selects when the button label is announced out of visual context.",
+        suggestedFix:
+          "Give each button a unique accessible name or visible label, such as 'Select Starter', 'Select Pro', and 'Select Enterprise'. Prefer visible-specific labels when space allows.",
+      },
+      {
+        id: "recommended-plan-not-prominent",
+        title: "Recommended plan is not prominent enough",
+        issueType: "visual_hierarchy",
+        severity: "medium",
+        affectedElement: "Pro plan card",
+        evidence: {
+          screenshotObservation:
+            "The Pro plan has a small 'Popular' badge, but the card and button treatment look similar to the other plans.",
+          domEvidence:
+            '<article class="plan-card"><h2>Pro</h2><span>Popular</span><p>$49</p><p>For growing teams</p><button>Select</button></article>',
+        },
+        userImpact:
+          "Users may not quickly understand which plan is recommended or what action the page is guiding them toward.",
+        suggestedFix:
+          "Increase the hierarchy of the recommended plan with a stronger card treatment, clearer badge placement, or a more prominent call-to-action. Do not rely only on color to communicate priority.",
+      },
+    ],
+  },
 };
